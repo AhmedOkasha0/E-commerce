@@ -11,3 +11,10 @@ class LoginError extends LoginState {
 
   LoginError({required this.error});
 }
+class GoogleSignInLoading extends LoginState {}
+class GoogleSignInSuccess extends LoginState {}
+class GoogleSignInError extends LoginState {
+  final String error;
+
+  GoogleSignInError({required this.error});
+}

@@ -49,7 +49,8 @@ class _LogInScreenState extends State<LogInScreen> {
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) {
                 if (state is LoginSuccess) {
-                  Navigator.pushNamed(context, RoutesNames.homeScreen);
+                  Navigator.pushReplacementNamed(
+                      context, RoutesNames.homeScreen);
                 } else if (state is LoginError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.error)),
@@ -119,16 +120,40 @@ class _LogInScreenState extends State<LogInScreen> {
                               size: 14, color: AppColors.c757575),
                         )),
                         Gap(30.h),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            height: 60.h,
-                            width: 60.w,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.asset(ImageConstants.googleIcon),
-                          ),
+                        BlocConsumer<LoginCubit, LoginState>(
+                          listener: (context, state) {
+                            if (state is GoogleSignInSuccess) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content:
+                                        Text('Google Sign-In successful!')),
+                              );
+                              Navigator.pushNamed(context,
+                                  RoutesNames.homeScreen); // Navigate to home
+                            } else if (state is GoogleSignInError) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(state.error)),
+                              );
+                            }
+                          },
+                          builder: (context, state) {
+                            if (state is GoogleSignInLoading) {
+                              return const CircularProgressIndicator();
+                            }
+                            return GestureDetector(
+                              onTap: () {
+                                context.read<LoginCubit>().loginWithGoogle();
+                              },
+                              child: Container(
+                                height: 60.h,
+                                width: 60.w,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.asset(ImageConstants.googleIcon),
+                              ),
+                            );
+                          },
                         ),
                         Gap(30.h),
                         GestureDetector(
