@@ -11,15 +11,17 @@ class ContactCubit extends Cubit<ContactUsState> {
   final TextEditingController subjectController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
 
-  void sendEmail(String name, String content) async {
+  void sendEmail({required String name,required String email, required String subject,required String content}) async {
+    // Encode the parameters to ensure special characters are handled correctly
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: 'fankyfanky100@gmail.com', // Replace with your email
-      query: 'subject=Message from $name&body=$content', // Add subject and body
+      path: 'samehalbadry99@gmail.com', // Replace with your email
+      query: 'subject=$subject&body=From: $name\nEmail: $email\n\n$content',
     );
-    print(emailLaunchUri.toString());
 
-    // Launch the email client
+    print(emailLaunchUri.toString());
     await launchUrl(Uri.parse(emailLaunchUri.toString()));
+
   }
+ 
 }

@@ -26,6 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
+
   Future<void> loginWithGoogle() async {
     try {
       emit(GoogleSignInLoading());
@@ -38,21 +39,27 @@ class LoginCubit extends Cubit<LoginState> {
       }
 
       // Obtain the auth details from the request
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+      await googleUser.authentication;
 
       // Create a new credential
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
 
       // Sign in to Firebase with the Google credential
+      UserCredential userCredential =
       await FirebaseAuth.instance.signInWithCredential(credential);
 
-      emit(GoogleSignInSuccess());
+      // Optional: You can now access the user data
+      final User? user = userCredential.user;
+      if (user != null) {
+        emit(GoogleSignInSuccess());
+      } else {
+        emit(GoogleSignInError(error: 'User not found.'));
+      }
     } catch (e) {
       emit(GoogleSignInError(error: e.toString()));
     }
-  }
-}
+  }}

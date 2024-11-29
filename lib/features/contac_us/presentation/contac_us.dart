@@ -20,23 +20,22 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-      padding:
-          EdgeInsets.only(top: 120.h, right: 16.w, left: 16.w, bottom: 20.h),
-      child: BlocConsumer<ContactCubit, ContactUsState>(
-        listener: (context, state) {
-          if (state is SendNoteSuccess) {
-            context.read<ContactCubit>().contentController.clear();
-            context.read<ContactCubit>().nameController.clear();
-            context.read<ContactCubit>().emailController.clear();
-            context.read<ContactCubit>().subjectController.clear();
-          }
-        },
-        builder: (context, state) {
-          return Form(
-            key: _formKey,
-            child: SingleChildScrollView(
+    return BlocConsumer<ContactCubit, ContactUsState>(
+      listener: (context, state) {
+        if (state is SendNoteSuccess) {
+          context.read<ContactCubit>().contentController.clear();
+          context.read<ContactCubit>().nameController.clear();
+          context.read<ContactCubit>().emailController.clear();
+          context.read<ContactCubit>().subjectController.clear();
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+            body: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(top: 120.h, left: 16.w, right: 16.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -45,24 +44,28 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                           size: 26, weight: FontWeight.w700)),
                   Gap(30.h),
                   CustomTextFormField(
+                    controller: context.read<ContactCubit>().nameController,
                     hintText: "Name",
                     contentPadding:
                         EdgeInsets.only(top: 20.h, bottom: 20.h, left: 20.w),
                   ),
                   Gap(16.h),
                   CustomTextFormField(
+                    controller: context.read<ContactCubit>().emailController,
                     hintText: "Email",
                     contentPadding:
                         EdgeInsets.only(top: 20.h, bottom: 20.h, left: 20.w),
                   ),
                   Gap(16.h),
                   CustomTextFormField(
+                    controller: context.read<ContactCubit>().subjectController,
                     hintText: "Email Subject",
                     contentPadding:
                         EdgeInsets.only(top: 20.h, bottom: 20.h, left: 20.w),
                   ),
                   Gap(16.h),
                   CustomTextFormField(
+                    controller: context.read<ContactCubit>().contentController,
                     hintText: "Content",
                     contentPadding:
                         EdgeInsets.only(top: 45.h, bottom: 45.h, left: 20.w),
@@ -71,16 +74,31 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   AuthButton(
                       text: "send",
                       onTap: () {
-                        context
-                            .read<ContactCubit>()
-                            .sendEmail("name", "content");
+                        context.read<ContactCubit>().sendEmail(
+                              name: context
+                                  .read<ContactCubit>()
+                                  .nameController
+                                  .text,
+                              email: context
+                                  .read<ContactCubit>()
+                                  .emailController
+                                  .text,
+                              subject: context
+                                  .read<ContactCubit>()
+                                  .subjectController
+                                  .text,
+                              content: context
+                                  .read<ContactCubit>()
+                                  .contentController
+                                  .text,
+                            );
                       }),
                 ],
               ),
             ),
-          );
-        },
-      ),
-    ));
+          ),
+        ));
+      },
+    );
   }
 }

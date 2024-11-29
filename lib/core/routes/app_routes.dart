@@ -8,6 +8,7 @@ import 'package:store_app/features/auth/login/presentation/screens/login_screen.
 import 'package:store_app/features/auth/sign_up/cubit/sign_up_cubit.dart';
 import 'package:store_app/features/auth/sign_up/presentation/screen/sign_up.dart';
 import 'package:store_app/features/blog/presentation/screen/blog_screen.dart';
+import 'package:store_app/features/contac_us/cubit/contact._cubit.dart';
 import 'package:store_app/features/contac_us/presentation/contac_us.dart';
 
 import 'package:store_app/features/home/presentation/widgets/main_navigation.dart';
@@ -32,7 +33,13 @@ class AppRouter {
               child: const SignUpScreen(),
             );
           case RoutesNames.homeScreen:
-            return const MainNavigation();
+            return BlocProvider(
+              create: (context) => getIt<ContactCubit>(),
+              child: BlocProvider(
+                create: (context) => getIt<ContactCubit>(),
+                child: const MainNavigation(),
+              ),
+            );
           case RoutesNames.contactUs:
             return BlocProvider(
               create: (context) => getIt<LoginCubit>(),
