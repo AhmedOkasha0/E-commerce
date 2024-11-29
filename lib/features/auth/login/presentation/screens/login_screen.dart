@@ -59,7 +59,9 @@ class LogInScreen extends StatelessWidget {
                 Gap(60.h),
                 AuthButton(
                   text: "Log In",
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutesNames.homeScreen);
+                  },
                 ),
                 Gap(50.h),
                 Center(
