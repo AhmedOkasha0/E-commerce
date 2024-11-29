@@ -63,7 +63,17 @@ class _LogInScreenState extends State<LogInScreen> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          Gap(16.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Email Adress",
+                                style: AppStyles.textStyle(
+                                    size: 14, color: Colors.black),
+                              ),
+                            ],
+                          ),
+                          Gap(12.h),
                           CustomTextFormField(
                             controller:
                                 context.read<LoginCubit>().emailController,
@@ -78,14 +88,24 @@ class _LogInScreenState extends State<LogInScreen> {
                               }
                               return null;
                             },
-                            hintText: "Email Adress",
+                            // hintText: "Email Adress",
                             hintStyle: AppStyles.textStyle(
                                 size: 14, color: AppColors.cC2C2C2),
                             contentPadding: EdgeInsets.symmetric(
                                 horizontal: 20.h, vertical: 20.w),
                           ),
                           Gap(20.h),
-                          Gap(16.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Password",
+                                style: AppStyles.textStyle(
+                                    size: 14, color: Colors.black),
+                              ),
+                            ],
+                          ),
+                          Gap(12.h),
                           CustomTextFormField(
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -98,7 +118,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             },
                             controller:
                                 context.read<LoginCubit>().passwordController,
-                            hintText: "password",
+                            // hintText: "password",
                             hintStyle: AppStyles.textStyle(
                                 size: 14, color: AppColors.cC2C2C2),
                             contentPadding: EdgeInsets.symmetric(

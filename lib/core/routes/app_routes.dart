@@ -11,6 +11,7 @@ import 'package:store_app/features/blog/presentation/screen/blog_screen.dart';
 import 'package:store_app/features/contac_us/presentation/contac_us.dart';
 
 import 'package:store_app/features/home/presentation/widgets/main_navigation.dart';
+import 'package:store_app/features/splash/splash_screen.dart';
 
 class AppRouter {
   static Route generateRoute(RouteSettings settings) {
@@ -18,7 +19,9 @@ class AppRouter {
       settings: settings,
       builder: (context) {
         switch (settings.name) {
-          case RoutesNames.login:
+          case RoutesNames.splash:
+            return SplashScreen();
+          case RoutesNames.loginScreen:
             return BlocProvider(
               create: (context) => getIt<LoginCubit>(),
               child: const LogInScreen(),
@@ -31,7 +34,10 @@ class AppRouter {
           case RoutesNames.homeScreen:
             return const MainNavigation();
           case RoutesNames.contactUs:
-            return const ContactUsScreen();
+            return BlocProvider(
+              create: (context) => getIt<LoginCubit>(),
+              child: const ContactUsScreen(),
+            );
           case RoutesNames.blogScreen:
             return const BlogScreen();
           default:

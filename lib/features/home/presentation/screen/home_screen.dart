@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
             alignment: Alignment.center,
             height: 140.h,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.c25BCBD,
             ),
             child: Text(
@@ -32,16 +32,29 @@ class HomeScreen extends StatelessWidget {
           ),
           Gap(10.h),
           Padding(
-            padding: EdgeInsets.only(left: 6.w, right: 6.w, bottom: 20.h),
+            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 20.h),
             child: Column(
               children: [
-                Image.asset(ImageConstants.homeImage),
-                Gap(10.h),
-                Text(
-                  "At Eczima,\n we are dedicated to providing personalized care and support for individuals suffering from skin conditions.\n Our expert team focuses on healing and managing eczema and other skin diseases with effective, evidence-based treatments.\n We empower you to take control of your skin health and achieve long-term wellness",
-                  style: AppStyles.textStyle(
-                      color: Colors.black, size: 14, weight: FontWeight.w400),
-                )
+                Row(
+                  children: [
+                    SizedBox(
+                      height: 320.h,
+                      width: 180.w,
+                      child: Text(
+                        "At Eczima,\n we are dedicated to providing personalized care and support for individuals suffering from skin conditions.\n Our expert team focuses on healing and managing eczema and other skin diseases with effective, evidence-based treatments.\n We empower you to take control of your skin health and achieve long-term wellness",
+                        style: AppStyles.textStyle(
+                            color: Colors.black,
+                            size: 14,
+                            weight: FontWeight.w400),
+                      ),
+                    ),
+                    Image.asset(
+                      ImageConstants.diagnose,
+                      height: 180.h,
+                      width: 150.w,
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -59,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                     child: Image.asset(ImageConstants.treatment),
                   ),
                   Gap(5.h),
-                  Text("Diagnosis of skin diseases"),
+                  const Text("Diagnosis of skin diseases"),
                 ],
               ),
               Column(
@@ -70,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                     child: Image.asset(ImageConstants.treatment),
                   ),
                   Gap(5.h),
-                  Text("Treatment of skin diseases"),
+                  const Text("Treatment of skin diseases"),
                 ],
               ),
               Column(
@@ -81,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                     child: Image.asset(ImageConstants.diagnose),
                   ),
                   Gap(5.h),
-                  Text(
+                  const Text(
                     "Tips for preventing skin diseases",
                     textAlign: TextAlign.center,
                   )
@@ -95,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                     child: Image.asset(ImageConstants.diagnose),
                   ),
                   Gap(5.h),
-                  Text("Communication with a doctor"),
+                  const Text("Communication with a doctor"),
                 ],
               ),
             ],

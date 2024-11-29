@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:store_app/core/common/widgets/custom_button.dart';
 import 'package:store_app/core/common/widgets/custom_form_field.dart';
-import 'package:store_app/core/constants/images.dart';
 import 'package:store_app/core/routes/routes.dart';
 import 'package:store_app/core/themes/app_colors.dart';
 import 'package:store_app/core/themes/text_style.dart';
@@ -49,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             BlocConsumer<SignUpCubit, SingUpState>(
               listener: (context, state) {
                 if (state is SingUpSuccess) {
-                  Navigator.pushNamed(context, RoutesNames.login);
+                  Navigator.pushNamed(context, RoutesNames.loginScreen);
                 } else if (state is SingUpError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.error)),
@@ -61,7 +60,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      Gap(16.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Email Adress",
+                            style: AppStyles.textStyle(
+                                size: 14, color: Colors.black),
+                          ),
+                        ],
+                      ),
+                      Gap(12.h),
                       CustomTextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -75,13 +84,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           return null;
                         },
                         controller: context.read<SignUpCubit>().emailController,
-                        hintText: "Email Address",
+                        // hintText: "Email Address",
                         hintStyle: AppStyles.textStyle(
                             size: 14, color: AppColors.cC2C2C2),
                         contentPadding: EdgeInsets.symmetric(
                             horizontal: 20.h, vertical: 20.w),
                       ),
                       Gap(20.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Password",
+                            style: AppStyles.textStyle(
+                                size: 14, color: Colors.black),
+                          ),
+                        ],
+                      ),
+                      Gap(12.h),
                       CustomTextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -94,7 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         controller:
                             context.read<SignUpCubit>().passwordController,
-                        hintText: "Password",
+                        // hintText: "Password",
                         // obscureText: true,
                         hintStyle: AppStyles.textStyle(
                             size: 14, color: AppColors.cC2C2C2),
@@ -121,21 +141,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Gap(30.h),
                       GestureDetector(
                         onTap: () {
-                          // Handle Google sign-up here
-                        },
-                        child: Container(
-                          height: 60.h,
-                          width: 60.w,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(ImageConstants.googleIcon),
-                        ),
-                      ),
-                      Gap(30.h),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, RoutesNames.login);
+                          Navigator.pushNamed(context, RoutesNames.loginScreen);
                         },
                         child: Text(
                           "Already have an account yet? Log In",
