@@ -31,6 +31,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.16
+  bloc: ^8.1.4
+  firebase_auth: ^5.3.3
 
 dev_dependencies:
   flutter_test:

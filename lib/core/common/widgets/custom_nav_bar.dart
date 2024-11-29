@@ -59,8 +59,8 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
           ),
           TabBarTab(
             icon: selectedTabIndex == 2
-                ? ImageConstants.contactUs
-                : ImageConstants.unSelectedBlog,
+                ? ImageConstants.selectedContactUs
+                : ImageConstants.contactUs,
             label: "Contact us",
           ),
         ],
