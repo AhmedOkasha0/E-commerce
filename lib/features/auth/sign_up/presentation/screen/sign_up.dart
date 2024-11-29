@@ -57,8 +57,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 }
               },
               builder: (context, state) {
-                
-
                 return Form(
                   key: _formKey,
                   child: Column(
