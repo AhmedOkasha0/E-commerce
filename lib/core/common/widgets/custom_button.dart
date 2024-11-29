@@ -36,7 +36,7 @@ class AuthButton extends StatelessWidget {
             color: borderColor ?? AppColors.c25BCBD,
             width: 1.w,
           ),
-          color: backgroundColor ?? AppColors.c247CFF,
+          color: backgroundColor ?? AppColors.c25BCBD,
           borderRadius: BorderRadius.circular(6.r),
         ),
         child: Text(

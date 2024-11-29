@@ -10,8 +10,8 @@ class MainTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return const TabBarView(physics: NeverScrollableScrollPhysics(), children: [
       HomeScreen(),
-      ContactUsScreen(),
       BlogScreen(),
+      ContactUsScreen(),
     ]);
   }
 }
