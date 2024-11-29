@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_app/core/themes/app_colors.dart';
@@ -49,7 +48,7 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType ?? TextInputType.text,
       obscureText: isObscureText ?? false,
-      textAlign: TextAlign.right,
+      textAlign: TextAlign.left,
       style: AppStyles.textStyle(
         color: AppColors.c545454,
         size: 14,
