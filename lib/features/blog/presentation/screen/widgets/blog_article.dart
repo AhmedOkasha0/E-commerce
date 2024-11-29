@@ -29,7 +29,7 @@ class BlogArticle extends StatelessWidget {
                   child: Image.asset(ImageConstants.homeImage)),
               Gap(10.h),
               Text(
-                "intrducing",
+                "Intrducing",
                 style: AppStyles.textStyle(size: 18, weight: FontWeight.w700),
               ),
               Gap(8.h),
@@ -38,7 +38,7 @@ class BlogArticle extends StatelessWidget {
                 style: AppStyles.textStyle(size: 14, weight: FontWeight.w400),
               ),
               Gap(16.h),
-              Text("symptoms",
+              Text("Symptoms",
                   style:
                       AppStyles.textStyle(size: 18, weight: FontWeight.w700)),
               Gap(8.h),

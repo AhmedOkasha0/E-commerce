@@ -163,7 +163,7 @@ class _LogInScreenState extends State<LogInScreen> {
                               }
                               return GestureDetector(
                                 onTap: () {
-                                  context.read<LoginCubit>().loginWithGoogle();
+                                  context.read<LoginCubit>().signInWithGoogle();
                                 },
                                 child: Container(
                                   height: 60.h,
