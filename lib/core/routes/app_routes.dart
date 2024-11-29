@@ -8,6 +8,7 @@ import 'package:store_app/features/auth/login/presentation/screens/login_screen.
 import 'package:store_app/features/auth/sign_up/cubit/sign_up_cubit.dart';
 import 'package:store_app/features/auth/sign_up/presentation/screen/sign_up.dart';
 import 'package:store_app/features/blog/presentation/screen/blog_screen.dart';
+import 'package:store_app/features/blog/presentation/screen/widgets/blog_article.dart';
 import 'package:store_app/features/contac_us/cubit/contact._cubit.dart';
 import 'package:store_app/features/contac_us/presentation/contac_us.dart';
 
@@ -47,6 +48,8 @@ class AppRouter {
             );
           case RoutesNames.blogScreen:
             return const BlogScreen();
+          case RoutesNames.blogArticle:
+            return const BlogArticle();
           default:
             return NoRouteScreen(roteName: settings.name!);
         }
