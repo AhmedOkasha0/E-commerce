@@ -7,4 +7,7 @@ class ImageConstants {
   static const unSelectedBlog = "assets/images/blog.png";
   static const contactUs = "assets/images/more.png";
   static const selectedContactUs = "assets/images/selected_more.png";
+  static const homeImage = "assets/images/home.webp";
+  static const treatment = "assets/images/treatment.png";
+  static const diagnose = "assets/images/diagnose.png";
 }
