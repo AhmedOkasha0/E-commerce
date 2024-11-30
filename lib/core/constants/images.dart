@@ -10,4 +10,5 @@ class ImageConstants {
   static const homeImage = "assets/images/home.webp";
   static const treatment = "assets/images/treatment.png";
   static const diagnose = "assets/images/diagnose.png";
+  static const logOut = "assets/images/log_out.png";
 }
