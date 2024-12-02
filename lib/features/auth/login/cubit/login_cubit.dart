@@ -10,19 +10,53 @@ class LoginCubit extends Cubit<LoginState> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  // Future<void> login() async {
+  //   emit(LogInLoading());
+  //   try {
+  //     final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //         email: emailController.text.trim(),
+  //         password: passwordController.text.trim());
+  //     emit(LoginSuccess());
+  //   } on FirebaseAuthException catch (e) {
+  //     if (e.code == 'user-not-found') {
+  //       emit(LoginError(error: 'No user found for that email.'));
+  //     } else if (e.code == 'wrong-password') {
+  //       emit(LoginError(error: 'Wrong password provided for that user.'));
+  //     } else if (e.code == 'invalid-email') {
+  //       emit(LoginError(error: 'The email address is not valid.'));
+  //       {}
+  //     } else if (e.code == "Email or password is incorrect") {
+  //       emit(LoginError(error: "Email or password is incorrect"));
+  //     }
+  //   }
+  // }
   Future<void> login() async {
     emit(LogInLoading());
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim());
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
       emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        emit(LoginError(error: 'No user found for that email.'));
-      } else if (e.code == 'wrong-password') {
-        emit(LoginError(error: 'Wrong password provided for that user.'));
+      String errorMessage;
+      switch (e.code) {
+        case 'user-not-found':
+          errorMessage = 'No user found for that email.';
+          break;
+        case 'wrong-password':
+          errorMessage = 'Wrong password provided for that user.';
+          break;
+        case 'invalid-email':
+          errorMessage = 'The email address is not valid.';
+          break;
+        default:
+          errorMessage = 'An unknown error occurred. Please try again.';
+          break;
       }
+      emit(LoginError(error: errorMessage));
+    } catch (e) {
+      emit(LoginError(error: 'Something went wrong. Please try again later.'));
     }
   }
 
@@ -41,7 +75,6 @@ class LoginCubit extends Cubit<LoginState> {
       final GoogleSignInAuthentication? googleAuth =
           await googleUser.authentication;
 
-      
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
