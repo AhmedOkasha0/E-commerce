@@ -48,7 +48,6 @@ class BlogScreen extends StatelessWidget {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Gap(5.h),
-                      // Description Text with text overflow handling
                       Expanded(
                         child: Text(
                           "description of the medical\n condition and treatment",
