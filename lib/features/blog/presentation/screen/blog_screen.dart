@@ -15,56 +15,62 @@ class BlogScreen extends StatelessWidget {
         title: const Text('Blog screen'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.only(top: 40.h),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // 2 columns
-            crossAxisSpacing: 10, // Horizontal space between items
-            mainAxisSpacing: 10, // Vertical space between items
-          ),
-          itemCount: 10, // 2 columns * 5 rows = 10 items
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.only(left: 8.w, right: 8.w),
-              child: SizedBox(
-                height: 250.h, // Increased height to accommodate content
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(RoutesNames.blogArticle);
-                  },
-                  child: Column(
-                    children: [
-                      // Image widget
-                      Image.asset(
-                        ImageConstants.diagnose,
-                        height: 120.h,
-                        width: double.infinity, // Make image full width
-                        fit: BoxFit.cover, // Adjust to fit within box
-                      ),
-                      Gap(10.h),
-                      const Text(
-                        "example",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Gap(5.h),
-                      Expanded(
-                        child: Text(
-                          "description of the medical\n condition and treatment",
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: AppStyles.textStyle(size: 12),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
+      body: Center(
+        child: Text(
+          "Coming soon",
+          style: AppStyles.textStyle(size: 26, weight: FontWeight.w700),
         ),
       ),
+      //  Padding(
+      //   padding: EdgeInsets.only(top: 40.h),
+      //   child: GridView.builder(
+      //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      //       crossAxisCount: 2, // 2 columns
+      //       crossAxisSpacing: 10, // Horizontal space between items
+      //       mainAxisSpacing: 10, // Vertical space between items
+      //     ),
+      //     itemCount: 10, // 2 columns * 5 rows = 10 items
+      //     itemBuilder: (context, index) {
+      //       return Padding(
+      //         padding: EdgeInsets.only(left: 8.w, right: 8.w),
+      //         child: SizedBox(
+      //           height: 250.h, // Increased height to accommodate content
+      //           child: GestureDetector(
+      //             onTap: () {
+      //               Navigator.of(context).pushNamed(RoutesNames.blogArticle);
+      //             },
+      //             child: Column(
+      //               children: [
+      //                 // Image widget
+      //                 Image.asset(
+      //                   ImageConstants.diagnose,
+      //                   height: 120.h,
+      //                   width: double.infinity, // Make image full width
+      //                   fit: BoxFit.cover, // Adjust to fit within box
+      //                 ),
+      //                 Gap(10.h),
+      //                 const Text(
+      //                   "example",
+      //                   style: TextStyle(fontWeight: FontWeight.bold),
+      //                 ),
+      //                 Gap(5.h),
+      //                 Expanded(
+      //                   child: Text(
+      //                     "description of the medical\n condition and treatment",
+      //                     maxLines: 3,
+      //                     overflow: TextOverflow.ellipsis,
+      //                     textAlign: TextAlign.center,
+      //                     style: AppStyles.textStyle(size: 12),
+      //                   ),
+      //                 ),
+      //               ],
+      //             ),
+      //           ),
+      //         ),
+      //       );
+      //     },
+      //   ),
+      // ),
     );
   }
 }
