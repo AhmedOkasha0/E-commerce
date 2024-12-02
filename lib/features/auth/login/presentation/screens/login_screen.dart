@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
 import 'package:store_app/core/common/widgets/custom_button.dart';
 import 'package:store_app/core/common/widgets/custom_form_field.dart';
@@ -53,9 +54,14 @@ class _LogInScreenState extends State<LogInScreen> {
                     Navigator.pushReplacementNamed(
                         context, RoutesNames.homeScreen);
                   } else if (state is LoginError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.error)),
-                    );
+                    Fluttertoast.showToast(
+                        msg: state.error,
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: AppColors.c25BCBD,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                   }
                 },
                 builder: (context, state) {
