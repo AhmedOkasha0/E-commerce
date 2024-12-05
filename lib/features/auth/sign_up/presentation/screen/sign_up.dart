@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
 import 'package:store_app/core/common/widgets/custom_button.dart';
 import 'package:store_app/core/common/widgets/custom_form_field.dart';
@@ -50,9 +51,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 if (state is SingUpSuccess) {
                   Navigator.pushNamed(context, RoutesNames.loginScreen);
                 } else if (state is SingUpError) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.error)),
-                  );
+                  Fluttertoast.showToast(
+                      msg: state.error,
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: AppColors.c25BCBD,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
                 }
               },
               builder: (context, state) {
@@ -122,14 +128,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             horizontal: 20.h, vertical: 20.w),
                       ),
                       Gap(60.h),
-                      AuthButton(
-                        text: "Create Account",
-                        onTap: () {
-                          if (_formKey.currentState?.validate() ?? false) {
-                            context.read<SignUpCubit>().signUp();
-                          }
-                        },
-                      ),
+                      state is SingUpLoading
+                          ? const CircularProgressIndicator(
+                              color: AppColors.c25BCBD,
+                            )
+                          : AuthButton(
+                              text: "Create Account",
+                              onTap: () {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  context.read<SignUpCubit>().signUp();
+                                }
+                              },
+                            ),
                       Gap(50.h),
                       Center(
                         child: Text(
