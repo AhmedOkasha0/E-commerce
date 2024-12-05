@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:store_app/core/constants/images.dart';
+import 'package:store_app/core/routes/routes.dart';
 import 'package:store_app/core/themes/text_style.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () async {
                   await FirebaseAuth.instance.signOut();
-                  Navigator.pop(context);
+                  Navigator.popAndPushNamed(context, RoutesNames.loginScreen);
                 },
                 child: Image.asset(
                   ImageConstants.logOut,
